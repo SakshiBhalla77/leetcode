@@ -9,6 +9,12 @@
 class Solution {
 public:
     void deleteNode(ListNode* node) {
+
+        //edge case
+        if(node==NULL || node->next == NULL)
+        return ;
+
+        //Copy Value of Next Node:
         node->val = node->next->val;
         
         ListNode* Nodetodelete = node->next;
