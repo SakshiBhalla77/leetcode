@@ -10,51 +10,54 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        if (head == NULL || head->next == NULL)
-            return head;
+
+    ListNode* reverseHead(ListNode* head)
+    {
+        if(head == NULL || head->next == NULL)
+        return head;
 
         ListNode* prev = NULL;
         ListNode* temp = head;
-        ListNode* next = NULL;
+        ListNode* next  = NULL;
 
-        while (temp != NULL) {
-            next = temp->next; // storing the next node
-            temp->next = prev; // replace the pointer
+        while(temp!=NULL){
+            next = temp->next;
+            temp->next = prev;
             prev = temp;
             temp = next;
+
         }
         return prev;
+
     }
 
+
     bool isPalindrome(ListNode* head) {
-        if (head == NULL || head->next == NULL)
-            return true;
+        if(head == NULL || head->next == NULL)
+        return true;
 
-        ListNode* slow = head;
         ListNode* fast = head;
+        ListNode* slow = head;
 
-        while (fast != NULL && fast->next != NULL) {
-            slow = slow->next;
+        while(fast!= NULL && fast->next != NULL){
             fast = fast->next->next;
-            
+            slow = slow->next;
         }
-        ListNode* reversedHead = reverseList(slow);
+        ListNode* reversedHead = reverseHead(slow);
+
         ListNode* first = head;
         ListNode* second = reversedHead;
 
-        while(second!=NULL){
-
-            if(first->val != second->val ){
-                reverseList(reversedHead);
-                return false;
-            }
-
-             first = first->next;
-            second = second->next;
-            
+        while(second!= NULL){
+            if(first->val != second->val){
+            reverseHead(reversedHead);
+            return false;
         }
-        reverseList(reversedHead);
-        return true;
+        first = first->next;
+        second = second->next;
+        
+        }
+        reverseHead(reversedHead);
+            return true;
     }
 };
