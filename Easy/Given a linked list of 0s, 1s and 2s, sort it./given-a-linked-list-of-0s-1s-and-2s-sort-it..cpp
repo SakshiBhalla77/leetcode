@@ -34,14 +34,12 @@ class Solution
     public:
     //Function to sort a linked list of 0s, 1s and 2s.
     
-   
-    
     
     Node* segregate(Node *head) {
         if(head == NULL || head->next == NULL)
         return head;
         
-        Node* dummy0 = new Node(-1);
+        Node* dummy0 = new Node(-1); 
         Node* zeroHead = dummy0;
         
         Node* dummy1 = new Node(-1);
