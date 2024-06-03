@@ -8,7 +8,47 @@
  */
 class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+int findLength(ListNode* head)
+{
+    int c= 0;
+
+    while(head!=NULL)
+    {
+        c++;
+        head = head->next;
+    }
+    return c;
+    
+}
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB){
+    int a = findLength(headA);
+    int b = findLength(headB);
+
+    if(b>a) {
+        for(int i=0; i<(b-a);i++)
+        headB = headB->next;
+    }
+    else if(a>b){
+        for(int i=0; i<(a-b); i++)
+        headA = headA ->next;
+    }
+
+    while(headA != NULL && headB != NULL){
+        if(headA == headB)
+        {
+            return headA;
+        }
+        headA = headA->next;
+        headB = headB ->next;
+    }
+return NULL;
+
+}
+};
+
+
+
+    /* ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode* temp1 = headA;
         ListNode* temp2 = headB;
 
@@ -32,5 +72,5 @@ public:
             // temp2 = temp2 == NULL? headA:temp2->next;
         }
         return temp2; //return temp2 will work too
-    }
-};
+    }*/
+//};
