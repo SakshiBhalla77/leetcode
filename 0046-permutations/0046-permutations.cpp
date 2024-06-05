@@ -1,25 +1,25 @@
 class Solution {
 public:
-void permu(vector<int>&nums , int index, vector<vector<int>>&result){
+void help(vector<int>&nums,int index, vector<vector<int>>&ans ){
     int n = nums.size();
+
     if(index == n)
     {
-        result.push_back(nums);
-        return;
+        ans.push_back(nums);
     }
-    for(int i=index ; i<n; i++){
+    for(int i =index;i<n ; i++)
+    {
         swap(nums[index], nums[i]);
-        permu(nums,index+1,result);
-        swap(nums[index], nums[i]);//backtrack
-        
+        help(nums,index+1,ans);
+        swap(nums[index], nums[i]); // backtrack
     }
     
 
 }
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>>result;
-        permu(nums,0,result);
-        return result;
-
+        vector<vector<int>>ans;
+        help(nums,0,ans);
+        return ans;
+        
     }
 };
