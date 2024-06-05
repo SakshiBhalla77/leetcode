@@ -6,27 +6,26 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    void sSums(vector<int> arr, int n, int index , int sum, vector<int> &result) 
-    {
+  
+  void helper(vector<int>arr , int index, int sum , vector<int>&ans)
+  {
+      int n = arr.size();
+      if(index == n) 
+      {
+          ans.push_back(sum);
+          return;
+      }
+      helper(arr , index+ 1, sum  + arr[index], ans);
+      helper(arr , index+ 1, sum , ans);
+      
+  }
+    vector<int> subsetSums(vector<int> arr, int n) {
         // Write Your Code here
-        
-        
-        if(index == n){
-            result.push_back(sum);
-            return;
-        }
-        sSums(arr,  n, index+1 , sum + arr[index], result);
-        
-        sSums(arr,  n, index+1 , sum, result);
-    }
-        
-        
-        vector<int> subsetSums(vector<int> arr, int n) {
-        vector<int> result;
-        sSums(arr, n, 0, 0, result);
-        return result;
-        
-        
+        vector<int> ans;
+        helper(arr, 0, 0, ans);
+        //sort(ans.begin(), ans.end());
+        return ans;
+
     }
 };
 
