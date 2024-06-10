@@ -14,7 +14,7 @@ class Solution {
       
       int l = solve(height, n-1 , dp) + abs(height[n] - height[n-1]);
       int r = INT_MAX;
-      if( n >1)
+      if(n > 1)
       r = solve(height, n-2 , dp) + abs(height[n] - height[n-2]);
     
       return dp[n] = min(l,r);
