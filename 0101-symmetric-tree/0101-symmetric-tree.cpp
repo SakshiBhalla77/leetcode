@@ -23,6 +23,7 @@ public:
 
     }
     bool isSymmetric(TreeNode* root) {
+         if(root == NULL) return true;
         return solve(root->left, root->right);
     }
 };
