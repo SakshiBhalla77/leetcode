@@ -15,13 +15,7 @@ public:
                 j++;
             }
             prefix = prefix.substr(0,j);
-            if (prefix.empty()) {
-            break; // If prefix becomes empty, no need to continue
-        }
-           
-
-
-
+            
         }
         return prefix;
         
