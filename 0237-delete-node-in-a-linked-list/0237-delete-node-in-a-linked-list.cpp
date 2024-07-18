@@ -13,15 +13,16 @@ public:
         //edge case
         if(node==NULL || node->next == NULL)
         return ;
-
-        //Copy Value of Next Node:
-        node->val = node->next->val;
         
-        ListNode* Nodetodelete = node->next;
+        node->val = node->next->val;
+        ListNode* NodeToDelete = node->next;
 
         node->next = node->next->next;
+        delete NodeToDelete;
 
-        delete Nodetodelete;
+
+
+       
 
     }
 };
