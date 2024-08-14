@@ -1,33 +1,30 @@
-#include <vector>
-#include <algorithm>
 
 class Solution {
 public:
-    int smallestDistancePair(std::vector<int>& numbers, int k) {
-        std::sort(numbers.begin(), numbers.end());
-        int minDistance = 0, maxDistance = numbers.back() - numbers.front();
+    int smallestDistancePair(std::vector<int>& nums, int k) {
+        std::sort(nums.begin(), nums.end());
         
-        while (minDistance < maxDistance) {
-            int midDistance = minDistance + (maxDistance - minDistance) / 2;
-            if (countPairsWithinDistance(numbers, midDistance) < k) {
-                minDistance = midDistance + 1;
-            } else {
-                maxDistance = midDistance;
-            }
+        int left = 0;
+        int right = nums[nums.size() - 1] - nums[0];
+        
+        while (left < right) {
+            int mid = (left + right) / 2;
+            
+            if (issmallpairs(nums, k, mid))
+                right = mid;
+            else
+                left = mid + 1;
         }
-        
-        return minDistance;
+        return left;
     }
-
+    
 private:
-    int countPairsWithinDistance(const std::vector<int>& numbers, int targetDistance) {
+    bool issmallpairs(const std::vector<int>& nums, int k, int mid) {
         int count = 0, left = 0;
-        for (int right = 1; right < numbers.size(); ++right) {
-            while (numbers[right] - numbers[left] > targetDistance) {
-                ++left;
-            }
+        for (int right = 1; right < nums.size(); right++) {
+            while (nums[right] - nums[left] > mid) left++;
             count += right - left;
         }
-        return count;
+        return (count >= k);
     }
 };
