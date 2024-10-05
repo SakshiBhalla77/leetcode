@@ -17,6 +17,7 @@ public:
     */
 
     // STACK USE KRKE
+    // time O(N) SPACE O(N)
 void reverseString(vector<char>& s) 
 {
     stack<char>st;
